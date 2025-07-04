@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Scale, Mail, Lock, User, ArrowRight, LogIn } from 'lucide-react';
@@ -199,14 +198,18 @@ const Auth = () => {
             <div className="space-y-2">
               <label className="text-xs font-medium text-slate-500 uppercase tracking-wide">Try Demo Account</label>
               <Select onValueChange={handleDemoSelect}>
-                <SelectTrigger className="w-full bg-slate-50 border-slate-200 text-slate-700">
+                <SelectTrigger className="w-full bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors">
                   <SelectValue placeholder="Select a demo account" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white border border-slate-200 shadow-lg">
                   {demoAccounts.map((account, index) => (
-                    <SelectItem key={index} value={account.email}>
+                    <SelectItem 
+                      key={index} 
+                      value={account.email}
+                      className="cursor-pointer hover:bg-slate-100 focus:bg-slate-100 px-3 py-2 transition-colors"
+                    >
                       <div className="flex flex-col">
-                        <span className="font-medium">{account.name}</span>
+                        <span className="font-medium text-slate-800">{account.name}</span>
                         <span className="text-xs text-slate-500">{account.role}</span>
                       </div>
                     </SelectItem>
