@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Scale, Mail, Lock, User, ArrowRight, LogIn } from 'lucide-react';
@@ -107,51 +108,51 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6 animate-fade-in">
+    <div className="min-h-screen bg-white kenya-pattern flex items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-6 animate-kenya-fade-in">
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-slate-100 to-white rounded-2xl shadow-lg border border-slate-200/50 animate-kenya-bounce">
-            <Scale className="h-8 w-8 text-slate-700" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg border border-green-100 animate-kenya-bounce">
+            <Scale className="h-8 w-8 text-red-600" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-slate-800">
-              LegalAssistant
+            <h1 className="text-3xl font-bold kenyan-gradient-text">
+              LegalAssistant KE
             </h1>
-            <p className="text-slate-600 mt-2">
+            <p className="text-green-700 mt-2 font-medium">
               {isSignUp ? 'Create your account' : 'Welcome back'}
             </p>
           </div>
         </div>
 
         {/* Auth Form */}
-        <Card className="p-6 bg-white/80 backdrop-blur-sm border border-slate-200/50 shadow-xl transition-all duration-300 hover:shadow-2xl">
+        <Card className="p-6 kenya-glass-card shadow-xl transition-all duration-300 hover:shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Email</label>
+              <label className="text-sm font-medium text-green-700">Email</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-green-600" />
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="pl-10 bg-white/90 border-slate-300 focus:border-slate-500 focus:ring-slate-500/20 transition-all duration-200"
+                  className="pl-10 bg-white border-green-200 focus:border-green-500 focus:ring-green-500/20 transition-all duration-200"
                   disabled={loading}
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Password</label>
+              <label className="text-sm font-medium text-green-700">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-green-600" />
                 <Input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="pl-10 bg-white/90 border-slate-300 focus:border-slate-500 focus:ring-slate-500/20 transition-all duration-200"
+                  className="pl-10 bg-white border-green-200 focus:border-green-500 focus:ring-green-500/20 transition-all duration-200"
                   disabled={loading}
                 />
               </div>
@@ -159,7 +160,7 @@ const Auth = () => {
 
             <Button
               type="submit"
-              className="w-full bg-slate-800 hover:bg-slate-700 shadow-lg transition-all duration-300 hover:scale-105 disabled:scale-100"
+              className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg transition-all duration-300 hover:scale-105 disabled:scale-100"
               disabled={loading}
             >
               {loading ? (
@@ -181,11 +182,11 @@ const Auth = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-green-700">
               {isSignUp ? 'Already have an account?' : "Don't have an account?"}
               <button
                 onClick={() => setIsSignUp(!isSignUp)}
-                className="ml-1 text-slate-800 hover:text-slate-600 font-medium transition-colors duration-200"
+                className="ml-1 text-red-600 hover:text-red-700 font-medium transition-colors duration-200"
                 disabled={loading}
               >
                 {isSignUp ? 'Sign in' : 'Sign up'}
@@ -194,23 +195,23 @@ const Auth = () => {
           </div>
 
           {/* Demo Account Dropdown */}
-          <div className="mt-6 pt-4 border-t border-slate-200">
+          <div className="mt-6 pt-4 border-t border-green-200">
             <div className="space-y-2">
-              <label className="text-xs font-medium text-slate-500 uppercase tracking-wide">Try Demo Account</label>
+              <label className="text-xs font-medium text-green-600 uppercase tracking-wide">Try Demo Account</label>
               <Select onValueChange={handleDemoSelect}>
-                <SelectTrigger className="w-full bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors">
+                <SelectTrigger className="w-full bg-green-50 border-green-200 text-green-700 hover:bg-green-100 transition-colors">
                   <SelectValue placeholder="Select a demo account" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border border-slate-200 shadow-lg">
+                <SelectContent className="bg-white border border-green-200 shadow-lg">
                   {demoAccounts.map((account, index) => (
                     <SelectItem 
                       key={index} 
                       value={account.email}
-                      className="cursor-pointer hover:bg-slate-100 focus:bg-slate-100 px-3 py-2 transition-colors"
+                      className="cursor-pointer hover:bg-green-50 focus:bg-green-100 px-3 py-2 transition-colors"
                     >
                       <div className="flex flex-col">
-                        <span className="font-medium text-slate-800">{account.name}</span>
-                        <span className="text-xs text-slate-500">{account.role}</span>
+                        <span className="font-medium text-green-800">{account.name}</span>
+                        <span className="text-xs text-green-600">{account.role}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -224,7 +225,7 @@ const Auth = () => {
         <div className="text-center">
           <Link
             to="/"
-            className="inline-flex items-center text-sm text-slate-600 hover:text-slate-800 transition-colors duration-200"
+            className="inline-flex items-center text-sm text-green-700 hover:text-red-600 transition-colors duration-200 font-medium"
           >
             Continue to Civic Education
             <ArrowRight className="h-4 w-4 ml-1" />
