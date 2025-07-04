@@ -108,51 +108,51 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white kenya-pattern flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-red-50 kenya-pattern flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6 animate-kenya-fade-in">
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg border border-green-100 animate-kenya-bounce">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-xl border-2 border-green-200 animate-kenya-bounce">
             <Scale className="h-8 w-8 text-red-600" />
           </div>
           <div>
             <h1 className="text-3xl font-bold kenyan-gradient-text">
               LegalAssistant KE
             </h1>
-            <p className="text-green-700 mt-2 font-medium">
+            <p className="text-green-800 mt-2 font-semibold text-lg">
               {isSignUp ? 'Create your account' : 'Welcome back'}
             </p>
           </div>
         </div>
 
         {/* Auth Form */}
-        <Card className="p-6 kenya-glass-card shadow-xl transition-all duration-300 hover:shadow-2xl">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-green-700">Email</label>
+        <Card className="p-8 bg-white/95 backdrop-filter backdrop-blur-sm shadow-2xl border-2 border-green-300 transition-all duration-300 hover:shadow-3xl">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-3">
+              <label className="text-sm font-semibold text-green-800 uppercase tracking-wide">Email</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-green-600" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-700" />
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="pl-10 bg-white border-green-200 focus:border-green-500 focus:ring-green-500/20 transition-all duration-200"
+                  className="pl-12 bg-green-50 border-2 border-green-300 focus:border-green-600 focus:ring-green-600/30 transition-all duration-200 text-green-900 placeholder:text-green-600"
                   disabled={loading}
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-green-700">Password</label>
+            <div className="space-y-3">
+              <label className="text-sm font-semibold text-green-800 uppercase tracking-wide">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-green-600" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-700" />
                 <Input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="pl-10 bg-white border-green-200 focus:border-green-500 focus:ring-green-500/20 transition-all duration-200"
+                  className="pl-12 bg-green-50 border-2 border-green-300 focus:border-green-600 focus:ring-green-600/30 transition-all duration-200 text-green-900 placeholder:text-green-600"
                   disabled={loading}
                 />
               </div>
@@ -160,20 +160,20 @@ const Auth = () => {
 
             <Button
               type="submit"
-              className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg transition-all duration-300 hover:scale-105 disabled:scale-100"
+              className="w-full bg-green-700 hover:bg-green-800 text-white shadow-xl transition-all duration-300 hover:scale-105 disabled:scale-100 py-3 text-lg font-semibold"
               disabled={loading}
             >
               {loading ? (
                 <div className="flex items-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3" />
                   Processing...
                 </div>
               ) : (
                 <div className="flex items-center">
                   {isSignUp ? (
-                    <User className="h-4 w-4 mr-2" />
+                    <User className="h-5 w-5 mr-3" />
                   ) : (
-                    <LogIn className="h-4 w-4 mr-2" />
+                    <LogIn className="h-5 w-5 mr-3" />
                   )}
                   {isSignUp ? 'Create Account' : 'Sign In'}
                 </div>
@@ -181,12 +181,12 @@ const Auth = () => {
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-sm text-green-700">
+          <div className="mt-8 text-center">
+            <p className="text-base text-green-800">
               {isSignUp ? 'Already have an account?' : "Don't have an account?"}
               <button
                 onClick={() => setIsSignUp(!isSignUp)}
-                className="ml-1 text-red-600 hover:text-red-700 font-medium transition-colors duration-200"
+                className="ml-2 text-red-700 hover:text-red-800 font-semibold transition-colors duration-200 underline"
                 disabled={loading}
               >
                 {isSignUp ? 'Sign in' : 'Sign up'}
@@ -195,23 +195,23 @@ const Auth = () => {
           </div>
 
           {/* Demo Account Dropdown */}
-          <div className="mt-6 pt-4 border-t border-green-200">
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-green-600 uppercase tracking-wide">Try Demo Account</label>
+          <div className="mt-8 pt-6 border-t-2 border-green-200">
+            <div className="space-y-3">
+              <label className="text-sm font-semibold text-green-800 uppercase tracking-wide">Try Demo Account</label>
               <Select onValueChange={handleDemoSelect}>
-                <SelectTrigger className="w-full bg-green-50 border-green-200 text-green-700 hover:bg-green-100 transition-colors">
+                <SelectTrigger className="w-full bg-green-100 border-2 border-green-400 text-green-800 hover:bg-green-200 transition-colors font-medium">
                   <SelectValue placeholder="Select a demo account" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border border-green-200 shadow-lg">
+                <SelectContent className="bg-white border-2 border-green-300 shadow-2xl">
                   {demoAccounts.map((account, index) => (
                     <SelectItem 
                       key={index} 
                       value={account.email}
-                      className="cursor-pointer hover:bg-green-50 focus:bg-green-100 px-3 py-2 transition-colors"
+                      className="cursor-pointer hover:bg-green-100 focus:bg-green-200 px-4 py-3 transition-colors border-b border-green-100 last:border-b-0"
                     >
                       <div className="flex flex-col">
-                        <span className="font-medium text-green-800">{account.name}</span>
-                        <span className="text-xs text-green-600">{account.role}</span>
+                        <span className="font-semibold text-green-900 text-base">{account.name}</span>
+                        <span className="text-sm text-green-700 font-medium">{account.role}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -225,10 +225,10 @@ const Auth = () => {
         <div className="text-center">
           <Link
             to="/"
-            className="inline-flex items-center text-sm text-green-700 hover:text-red-600 transition-colors duration-200 font-medium"
+            className="inline-flex items-center text-base text-green-800 hover:text-red-700 transition-colors duration-200 font-semibold bg-white/80 px-4 py-2 rounded-lg shadow-md hover:shadow-lg"
           >
             Continue to Civic Education
-            <ArrowRight className="h-4 w-4 ml-1" />
+            <ArrowRight className="h-5 w-5 ml-2" />
           </Link>
         </div>
       </div>
