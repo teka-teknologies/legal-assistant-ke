@@ -131,13 +131,13 @@ const Auth = () => {
             <div className="space-y-3">
               <label className="text-sm font-semibold text-green-800 uppercase tracking-wide">Email</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-700" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="pl-12 bg-green-50 border-2 border-green-300 focus:border-green-600 focus:ring-green-600/30 transition-all duration-200 text-green-900 placeholder:text-green-600"
+                  className="pl-12 bg-gray-50 border border-gray-300 focus:border-green-500 focus:ring-green-500/20 transition-all duration-200 text-gray-900 placeholder:text-gray-500"
                   disabled={loading}
                 />
               </div>
@@ -146,13 +146,13 @@ const Auth = () => {
             <div className="space-y-3">
               <label className="text-sm font-semibold text-green-800 uppercase tracking-wide">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-700" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
                 <Input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="pl-12 bg-green-50 border-2 border-green-300 focus:border-green-600 focus:ring-green-600/30 transition-all duration-200 text-green-900 placeholder:text-green-600"
+                  className="pl-12 bg-gray-50 border border-gray-300 focus:border-green-500 focus:ring-green-500/20 transition-all duration-200 text-gray-900 placeholder:text-gray-500"
                   disabled={loading}
                 />
               </div>
