@@ -199,19 +199,19 @@ const Auth = () => {
             <div className="space-y-3">
               <label className="text-sm font-semibold text-green-800 uppercase tracking-wide">Try Demo Account</label>
               <Select onValueChange={handleDemoSelect}>
-                <SelectTrigger className="w-full bg-green-100 border-2 border-green-400 text-green-800 hover:bg-green-200 transition-colors font-medium">
+                <SelectTrigger className="w-full bg-gray-50 border border-gray-300 text-gray-700 hover:bg-gray-100 focus:border-green-500 focus:ring-green-500/20 transition-colors font-medium">
                   <SelectValue placeholder="Select a demo account" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border-2 border-green-300 shadow-2xl">
+                <SelectContent className="bg-white border border-gray-300 shadow-xl">
                   {demoAccounts.map((account, index) => (
                     <SelectItem 
                       key={index} 
                       value={account.email}
-                      className="cursor-pointer hover:bg-green-100 focus:bg-green-200 px-4 py-3 transition-colors border-b border-green-100 last:border-b-0"
+                      className="cursor-pointer hover:bg-gray-100 focus:bg-gray-200 px-4 py-3 transition-colors border-b border-gray-100 last:border-b-0"
                     >
                       <div className="flex flex-col">
-                        <span className="font-semibold text-green-900 text-base">{account.name}</span>
-                        <span className="text-sm text-green-700 font-medium">{account.role}</span>
+                        <span className="font-semibold text-gray-900 text-base">{account.name}</span>
+                        <span className="text-sm text-gray-600 font-medium">{account.role}</span>
                       </div>
                     </SelectItem>
                   ))}
