@@ -67,11 +67,11 @@ const CivicEducation = () => {
         return;
       }
 
-      // Finance Bill logic (existing code)
+      // Finance Bill logic with updated URL
       console.log('Sending query to finance bill chat workflow...');
       console.log('Query:', userMessage.content);
       
-      const url = new URL('https://financebill.app.n8n.cloud/webhook/67f5821e-2f06-4339-8517-93b9dbac9ecb');
+      const url = new URL('https://lawassistant1.app.n8n.cloud/webhook/67f5821e-2f06-4339-8517-93b9dbac9ecb');
       url.searchParams.append('user_prompt', userMessage.content);
       
       console.log('Endpoint URL:', url.toString());

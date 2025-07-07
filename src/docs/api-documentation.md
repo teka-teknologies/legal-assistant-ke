@@ -7,13 +7,13 @@ This document contains the API specifications for all external services used in 
 
 **Purpose**: Query the Finance Bill document for specific information
 
-**Endpoint**: `https://financebill.app.n8n.cloud/webhook/67f5821e-2f06-4339-8517-93b9dbac9ecb`
+**Endpoint**: `https://lawassistant1.app.n8n.cloud/webhook/67f5821e-2f06-4339-8517-93b9dbac9ecb`
 
 **Method**: `GET`
 
 **Request Format**:
 ```
-GET https://financebill.app.n8n.cloud/webhook/67f5821e-2f06-4339-8517-93b9dbac9ecb?user_prompt=what%20vat%20taxes%20are%20in%20the%20finance%20bill%3F
+GET https://lawassistant1.app.n8n.cloud/webhook/67f5821e-2f06-4339-8517-93b9dbac9ecb?user_prompt=what%20vat%20taxes%20are%20in%20the%20finance%20bill%3F
 ```
 
 **Query Parameters**:
