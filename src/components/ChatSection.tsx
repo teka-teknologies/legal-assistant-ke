@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +7,7 @@ import { Card } from '@/components/ui/card';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/lib/supabase';
 
 interface ChatSectionProps {
   selectedDocA: string;
@@ -20,23 +22,6 @@ interface Message {
   content: string;
   timestamp: Date;
 }
-
-/**
- * COMPARE CHAT API DOCUMENTATION
- * 
- * Endpoint: https://lawassistant1.app.n8n.cloud/webhook/495857e9-b881-4d4d-8060-53cfa8c92822
- * Method: POST
- * 
- * Request Body:
- * {
- *   "user_prompt": "whats are the differences between these two documents?"
- * }
- * 
- * Response Format:
- * {
- *   "output": "**Document Comparison Analysis**\n\n**Query**: whats are the differences between these two documents?\n\n**Document 1 Findings**:\nNo relevant information found in the first document regarding the differences between the documents.\n\n**Document 2 Findings**:\nThe second document contains multiple instances of the text \"1.5\" with metadata indicating it comes from line 1 of a JSON blob. This might refer to a specific section or version number.\n\n**Key Differences**:\n- Document 1 contains no information about the differences.\n- Document 2 contains the number 1.5\n\n**Similarities**:\n- Both searches were for differences between the documents\n\n**Risk Assessment**:\nWithout more context, it's impossible to assess the risk. The number \"1.5\" could be a version number, a clause reference, or something else entirely.\n\n**Recommendation**:\nTo accurately compare the documents, I need more specific information about what aspects to compare. Please provide specific clauses, sections, or topics for comparison. A professional legal review is recommended to interpret the meaning of \"1.5\" and its implications within the second document.\n"
- * }
- */
 
 const ChatSection = ({ selectedDocA, selectedDocB, getDocumentName, documentsProcessed }: ChatSectionProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -96,32 +81,24 @@ const ChatSection = ({ selectedDocA, selectedDocB, getDocumentName, documentsPro
     setIsLoading(true);
 
     try {
-      console.log('Sending query to compare chat workflow...');
+      console.log('Sending query to compare documents edge function...');
       console.log('Query:', userMessage.content);
-      console.log('Endpoint URL:', 'https://lawassistant1.app.n8n.cloud/webhook/495857e9-b881-4d4d-8060-53cfa8c92822');
       
-      const response = await fetch('https://lawassistant1.app.n8n.cloud/webhook/495857e9-b881-4d4d-8060-53cfa8c92822', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const { data, error } = await supabase.functions.invoke('compare-documents', {
+        body: {
           user_prompt: userMessage.content,
-        }),
+        },
       });
 
-      console.log('Response status:', response.status);
-      console.log('Response ok:', response.ok);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (error) {
+        console.error('Edge function error:', error);
+        throw new Error(`Edge function error: ${error.message}`);
       }
 
-      const result = await response.json();
-      console.log('Compare chat workflow response:', result);
+      console.log('Edge function response:', data);
 
       // Extract the output content from the response structure
-      const responseContent = result.output || 'I apologize, but I received an empty response. Please try rephrasing your question.';
+      const responseContent = data.output || 'I apologize, but I received an empty response. Please try rephrasing your question.';
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -137,9 +114,7 @@ const ChatSection = ({ selectedDocA, selectedDocB, getDocumentName, documentsPro
       // More detailed error handling
       let errorMessage = 'I apologize, but I encountered an error while processing your request.';
       
-      if (error instanceof TypeError && error.message === 'Failed to fetch') {
-        errorMessage = 'Unable to connect to the chat service. This might be a temporary network issue or the service might be unavailable. Please try again in a few moments.';
-      } else if (error instanceof Error) {
+      if (error instanceof Error) {
         errorMessage = `Service error: ${error.message}. Please try again later.`;
       }
 
